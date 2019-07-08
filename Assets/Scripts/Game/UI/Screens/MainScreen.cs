@@ -58,9 +58,9 @@ namespace Game.UI.Screens
 
         private void CalculateButton_OnClick()
         {
-            KeyValuePair<int, int> winningHandIdAndScore = _boardController.GetBestHandIdAndScore();
+            KeyValuePair<int, int> bestHandIdAndScore = _boardController.GetBestHandIdAndScore();
             _gamePopupManager.Open<ResultScreen>();
-            _gamePopupManager.Get<ResultScreen>().Setup(winningHandIdAndScore.Key, winningHandIdAndScore.Value);
+            _gamePopupManager.Get<ResultScreen>().Setup(bestHandIdAndScore.Key, bestHandIdAndScore.Value);
         }
         
         #endregion
