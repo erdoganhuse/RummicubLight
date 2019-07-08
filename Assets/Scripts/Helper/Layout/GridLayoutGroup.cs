@@ -8,27 +8,17 @@ namespace Helper.Layout
     public class GridLayoutGroup : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _background;
-        [SerializeField] private RectOffset _padding;
-        [SerializeField] private Vector2 _spacing;
         [SerializeField] private int _columnCount;
         [SerializeField] private int _rowCount;
         
         private readonly List<GameObject> _childList = new List<GameObject>();
 
+        private float CellWidth => BackgroundSize.x / _columnCount;
+        private float CellHeight => BackgroundSize.y / _rowCount;
         private Vector2 BackgroundSize => _background.bounds.size;
         private Vector2 LeftTopPosition => new Vector2(_background.transform.localPosition.x - BackgroundSize.x / 2f,
             _background.transform.localPosition.y + BackgroundSize.y / 2f);
-        private float CellWidth => BackgroundSize.x / _columnCount;
-        private float CellHeight => BackgroundSize.y / _rowCount;
-        
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                RearrangeLayout();
-            }
-        }
-        
+                
         public void AddChild(GameObject child)
         {
             child.transform.SetParent(transform);
